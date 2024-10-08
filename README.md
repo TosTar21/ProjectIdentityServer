@@ -1,4 +1,4 @@
-# Proyecto: Identity Server.
+# Proyecto: Identity Server
 
 ## Tabla de Contenidos
 1. [Introducción](#introducción)
@@ -8,6 +8,7 @@
    - [Comandos Git Frecuentes](#comandos-git-frecuentes)
 3. [Estándares de Código](#estándares-de-código)
 4. [Recomendaciones Generales](#recomendaciones-generales)
+5. [Soy del Backend](#soy-del-backend)
 
 ## Introducción
 
@@ -53,3 +54,11 @@ Este documento proporciona una guía clara para el equipo de desarrollo sobre c�
 - **`git push`**: Enviar commits al repositorio remoto.
 - **`git pull`**: Traer los cambios del repositorio remoto al repositorio local.
 - **`git branch`**: Listar, crear o cambiar ramas.
+
+## Soy del Backend
+
+### YO SOY DEL BACKEND
+
+---
+
+Espero que este README sea de tu agrado. Puedes editarlo directamente en GitHub siguiendo este [enlace](https://github.com/TosTar21/ProjectIdentityServer/blob/main/README.md).
