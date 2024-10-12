@@ -17,6 +17,13 @@ namespace ProjectIdentityServer.Controllers
             _userService = userService;
         }
 
+        [HttpGet("users")]
+        public async Task<IActionResult> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsersAsync();
+            return Ok(users);  
+        }
+
         [HttpPost("register")]
         public async Task<IActionResult> RegisterUser([FromBody] DTORegisterUser request)
         {

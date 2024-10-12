@@ -44,6 +44,10 @@ public class SvUser : ISvUser
 
         return (true, new string[] { });
     }
+    public async Task<List<User>> GetAllUsersAsync()
+    {
+        return await _context.Users.Include(u => u.Role).ToListAsync(); // Incluir los roles
+    }
 
     // Método para hashear la contraseña
     private string HashPassword(string password)
