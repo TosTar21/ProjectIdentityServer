@@ -24,8 +24,8 @@ public class MyContext : DbContext
             .HasKey(r => r.RoleId);
 
         modelBuilder.Entity<Role>().HasData(
-           new Role { RoleId = 1, RoleName = "Dashboard" },
-           new Role { RoleId = 2, RoleName = "Errores" }
+           new Role { RoleId = 1, Name = "Dashboard" },
+           new Role { RoleId = 2, Name = "LogErrores" }
        );
     }
 }
