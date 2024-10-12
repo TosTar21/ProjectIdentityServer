@@ -36,5 +36,18 @@ namespace ProjectIdentityServer.Controllers
 
             return Ok("Usuario registrado exitosamente con el rol asignado.");
         }
+
+        [HttpDelete("delete/{id}")]
+        public async Task<IActionResult> DeleteUser(int id)
+        {
+            var result = await _userService.DeleteUserAsync(id);
+
+            if (!result.Succeeded)
+            {
+                return BadRequest(result.Errors);
+            }
+
+            return Ok("Usuario eliminado exitosamente.");
+        }
     }
 }

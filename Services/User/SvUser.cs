@@ -44,9 +44,26 @@ public class SvUser : ISvUser
 
         return (true, new string[] { });
     }
+
+    //Metodo Get all de users
     public async Task<List<User>> GetAllUsersAsync()
     {
-        return await _context.Users.Include(u => u.Role).ToListAsync(); // Incluir los roles
+        return await _context.Users.Include(u => u.Role).ToListAsync(); 
+    }
+
+    //Metodo delte de users
+    public async Task<(bool Succeeded, string[] Errors)> DeleteUserAsync(int userId)
+    {
+        var user = await _context.Users.FindAsync(userId);
+        if (user == null)
+        {
+            return (false, new[] { "Usuario no encontrado." });
+        }
+
+        _context.Users.Remove(user);
+        await _context.SaveChangesAsync();
+
+        return (true, new string[] { });
     }
 
     // Método para hashear la contraseña
