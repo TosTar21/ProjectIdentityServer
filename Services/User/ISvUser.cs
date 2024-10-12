@@ -11,6 +11,7 @@ namespace Services
     {
         Task<List<User>> GetAllUsersAsync();
         Task<(bool Succeeded, string[] Errors)> RegisterUserAsync(string userName, string password, string role);
+        Task<(bool Succeeded, string[] Errors)> DeleteUserAsync(int userId);
     }
 
 }
