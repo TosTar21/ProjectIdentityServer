@@ -12,46 +12,36 @@ namespace Config
                     ClientId = "Dashboard",
                     ClientSecrets = { new Secret("dashboard_secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "api1", "roles" },
-                    Claims = new List<ClientClaim> // Aquí agregamos el role al cliente
-                    {
-                        new ClientClaim("role", "DashboardAdmin")
-                    }
+                    AllowedScopes = { "dashboard_api" }
                 },
                 new Client
                 {
-                    ClientId = "Errors",
-                    ClientSecrets = { new Secret("errors_secret".Sha256()) },
+                    ClientId = "LogErrores",
+                    ClientSecrets = { new Secret("logerrores_secret".Sha256()) },
                     AllowedGrantTypes = GrantTypes.ClientCredentials,
-                    AllowedScopes = { "api2", "roles" },
-                    Claims = new List<ClientClaim> // Aquí agregamos el role al cliente
-                    {
-                        new ClientClaim("role", "ErrorsViewer")
-                    }
+                    AllowedScopes = { "logerrores_api" } 
                 }
             };
 
         public static IEnumerable<ApiScope> ApiScopes =>
             new ApiScope[]
             {
-                new ApiScope("api1", "Dashboard API"),
-                new ApiScope("api2", "Errors API"),
-                new ApiScope("roles", "Access roles")
+                new ApiScope("dashboard_api", "Dashboard API"),
+                new ApiScope("logerrores_api", "Log Errores API") 
             };
 
         public static IEnumerable<ApiResource> ApiResources =>
             new ApiResource[]
             {
-                new ApiResource("api1", "Dashboard API") { Scopes = { "api1", "roles" } },
-                new ApiResource("api2", "Errors API") { Scopes = { "api2", "roles" } }
+                new ApiResource("dashboard_api", "Dashboard API") { Scopes = { "dashboard_api" } },
+                new ApiResource("logerrores_api", "Log Errores API") { Scopes = { "logerrores_api" } }
             };
 
         public static IEnumerable<IdentityResource> IdentityResources =>
             new IdentityResource[]
             {
                 new IdentityResources.OpenId(),
-                new IdentityResources.Profile(),
-                new IdentityResource("roles", new [] { "role" })
+                new IdentityResources.Profile()
             };
     }
 }
