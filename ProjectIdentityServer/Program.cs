@@ -1,3 +1,6 @@
+using Config;
+using Duende.IdentityServer.Configuration;
+using Duende.IdentityServer.Validation;
 using Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -11,15 +14,23 @@ builder.Services.AddDbContext<MyContext>(options =>
 
 builder.Services.AddScoped<ISvUser, SvUser>();
 
+
+// Configuración de IdentityServer
+builder.Services.AddIdentityServer()
+    .AddInMemoryClients(IdentityConfig.Clients)
+    .AddInMemoryApiResources(IdentityConfig.ApiResources)
+    .AddInMemoryApiScopes(IdentityConfig.ApiScopes)
+    .AddInMemoryIdentityResources(IdentityConfig.IdentityResources)
+    .AddResourceOwnerValidator<SvResourceOwnerPasswordValidator>()
+    .AddProfileService<SvProfile>()
+    .AddDeveloperSigningCredential(); 
+
 builder.Services.AddControllers()
     .AddNewtonsoftJson(x =>
         x.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore);
 
-builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
-
 
 var app = builder.Build();
 
@@ -31,6 +42,8 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
+
+app.UseIdentityServer();
 
 app.UseAuthorization();
 
